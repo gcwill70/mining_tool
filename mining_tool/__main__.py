@@ -232,13 +232,13 @@ def main(args):
     # Comment processing
     ## Get IDs
     ids = []
-    ### Get from imported issue list
+    ### Get IDs from imported issue list
     if issue_report.data != None:
         try:
             ids.extend([int(issue['issue ID']) for issue in issue_report.data])
         except:
             pass
-    ### Get from imported comments
+    ### Get IDs from imported comments
     if args.comments_imp:
         for filename in glob(f'{args.comments_imp}*'):
             try:
