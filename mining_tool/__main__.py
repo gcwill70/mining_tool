@@ -42,12 +42,6 @@ def main(args):
         type=str,
     )
     parser.add_argument(
-        '--discourse-username',
-        required=False,
-        help="discourse forum username.",
-        type=str,
-    )
-    parser.add_argument(
         '--imp',
         required=False,
         help="Search imported local CSV file instead of pulling from GitHub API.",
@@ -203,7 +197,7 @@ def main(args):
     if args.github:
         issue_report = GitHubIssueReport(args.github)
     elif args.discourse:
-        issue_report = DiscourseIssueReport(args.discourse, args.discourse_username)
+        issue_report = DiscourseIssueReport(args.discourse)
     else:
         issue_report = IssueReport()
 

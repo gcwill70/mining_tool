@@ -12,11 +12,11 @@ MAPPING = {
 }
 
 class DiscourseIssueReport(IssueReport):
-    def __init__(self, host, username = '', api_key = None):
+    def __init__(self, host):
         super().__init__()
         self.host = host
-        self.username = username or os.getenv('DIASPORA_DISCOURSE_USERNAME')
-        self.api_key = api_key or os.getenv('DIASPORA_DISCOURSE_KEY')
+        self.username = os.getenv('DIASPORA_DISCOURSE_USERNAME')
+        self.api_key = os.getenv('DIASPORA_DISCOURSE_KEY')
         
 
     def fetch_data(self):
