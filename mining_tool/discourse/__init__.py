@@ -15,8 +15,8 @@ class DiscourseIssueReport(IssueReport):
     def __init__(self, host):
         super().__init__()
         self.host = host
-        self.username = os.getenv('DIASPORA_DISCOURSE_USERNAME')
-        self.api_key = os.getenv('DIASPORA_DISCOURSE_KEY')
+        self.username = os.getenv('DISCOURSE_USERNAME')
+        self.api_key = os.getenv('DISCOURSE_KEY')
         
 
     def fetch_data(self):

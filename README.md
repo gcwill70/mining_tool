@@ -43,8 +43,8 @@ python -m mining_tool --comments-imp data/difftastic/issues/issue \\
 `.env` files can be used for API credentials.
 ```
 GH_PRIVATE_KEY=<FILL IN>
-DIASPORA_DISCOURSE_USERNAME=<FILL IN>
-DIASPORA_DISCOURSE_KEY=<FILL IN>
+DISCOURSE_USERNAME=<FILL IN>
+DISCOURSE_KEY=<FILL IN>
 ```
 
 # Usage
