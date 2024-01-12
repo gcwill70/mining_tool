@@ -19,7 +19,7 @@ def find_file(path: str):
     return sorted(paths, key=len)[0] if len(paths) > 0 else None
 
 def setup():
-    nltk.download('wordnet')
     nltk.download('stopwords')
+    nltk.download('wordnet')
     nltk.download('omw-1.4')
     nltk.download('punkt')
