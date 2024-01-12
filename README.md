@@ -3,9 +3,16 @@
 Python 3.9 is required.
 
 # Setup
+
+To setup the tool, run:
 ```
 pip install -r requirements.txt
 python -m mining_tool --setup
+```
+
+To setup your environment, run the command below and fill in your information.
+```
+cp .env.example .env
 ```
 
 # Quick Start
