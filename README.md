@@ -20,28 +20,28 @@ Below is an example use case of collecting issues from [difftastic](https://gith
 
 1. Mine issue metadata.
 ```
-python -m mining_tool --github Wilfred/difftastic \\
+python -m mining_tool --github Wilfred/difftastic \
   --exp data/difftastic/issues.csv
 ```
 2. Mine comments from each issue. If `--comments-imp` is provided, comments can be collected incrementally and the tool will skip over data that have already been collected.
 ```
-python -m mining_tool --github Wilfred/difftastic \\
-  --imp data/difftastic/issues.csv \\
-  --comments-imp data/difftastic/issues/issue \\
+python -m mining_tool --github Wilfred/difftastic \
+  --imp data/difftastic/issues.csv \
+  --comments-imp data/difftastic/issues/issue \
   --comments-exp data/difftastic/issues/issue
 ```
 3. Filter issues based on RegEx patterns. Issues are filtered out if they have no whitelisted keywords and have a blacklisted keyword. `--github` is not needed if all data has been pulled already.
 ```
-python -m mining_tool --imp data/difftastic/issues.csv \\
-  --comments-imp data/difftastic/issues/issue \\
-  --comments-wl data/filtering/whitelisted_keywords.txt \\
-  --comments-bl data/filtering/blacklisted_keywords.txt \\
+python -m mining_tool --imp data/difftastic/issues.csv \
+  --comments-imp data/difftastic/issues/issue \
+  --comments-wl data/filtering/whitelisted_keywords.txt \
+  --comments-bl data/filtering/blacklisted_keywords.txt \
   --exp data/difftastic/filtered.csv
 ```
 4. Randomly sample filtered issues based on custom [lambda expression](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) query. The query is applied to each comment.
 ```
-python -m mining_tool --comments-imp data/difftastic/issues/issue \\
-  --comments-query "lambda x: x['login'] == 'ghost'" \\
+python -m mining_tool --comments-imp data/difftastic/issues/issue \
+  --comments-query "lambda x: x['login'] == 'ghost'" \
   --comments-query-exp data/difftastic/query.xls
 ```
 
@@ -49,9 +49,9 @@ python -m mining_tool --comments-imp data/difftastic/issues/issue \\
 
 `.env` files can be used for API credentials.
 ```
-GH_PRIVATE_KEY=<FILL IN>
-DISCOURSE_USERNAME=<FILL IN>
-DISCOURSE_KEY=<FILL IN>
+GH_PRIVATE_KEY=
+DISCOURSE_USERNAME=
+DISCOURSE_KEY=
 ```
 
 # Usage
