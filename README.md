@@ -56,14 +56,10 @@ DISCOURSE_KEY=<FILL IN>
 
 # Usage
 ```
-usage: issuereport [-h] [--setup] [--github GITHUB] [--discourse DISCOURSE] [--imp IMP] [--min-comments MIN_COMMENTS]
-                   [--state STATE] [--title-wl TITLE_WL] [--title-bl TITLE_BL] [--randomize]
-                   [--sample-amount SAMPLE_AMOUNT] [--sample-percent SAMPLE_PERCENT] [--exp EXP] [--freq FREQ]
-                   [--comments-imp COMMENTS_IMP] [--comments-fetch-disable] [--comments-wl COMMENTS_WL]
-                   [--comments-bl COMMENTS_BL] [--comments-exp COMMENTS_EXP] [--comments-overwrite-disable]
-                   [--comments-utterances-exp COMMENTS_UTTERANCES_EXP] [--comments-utterances-overwrite-disable]
-                   [--comments-categorize-exp COMMENTS_CATEGORIZE_EXP] [--comments-categorize-overwrite-disable]
-                   [--comments-query-imp COMMENTS_QUERY_IMP] [--comments-query COMMENTS_QUERY]
+usage: mining_tool [-h] [--setup] [--github GITHUB] [--discourse DISCOURSE] [--imp IMP] [--min-comments MIN_COMMENTS] [--state STATE] [--title-wl TITLE_WL] [--title-bl TITLE_BL] [--randomize]
+                   [--sample-amount SAMPLE_AMOUNT] [--sample-percent SAMPLE_PERCENT] [--exp EXP] [--freq FREQ] [--comments-imp COMMENTS_IMP] [--comments-fetch-disable] [--comments-wl COMMENTS_WL]
+                   [--comments-bl COMMENTS_BL] [--comments-exp COMMENTS_EXP] [--comments-overwrite-disable] [--comments-utterances-exp COMMENTS_UTTERANCES_EXP] [--comments-utterances-overwrite-disable]
+                   [--comments-categorize-exp COMMENTS_CATEGORIZE_EXP] [--comments-categorize-overwrite-disable] [--comments-query-imp COMMENTS_QUERY_IMP] [--comments-query COMMENTS_QUERY]
                    [--comments-query-exp COMMENTS_QUERY_EXP]
 
 Mine discussions for analysis.

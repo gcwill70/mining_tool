@@ -21,7 +21,7 @@ from mining_tool.query import get_query
 def main(args):
     # arg parsing
     parser = argparse.ArgumentParser(
-        'issuereport',
+        'mining_tool',
         description='Mine discussions for analysis.'
     )
     parser.add_argument(
