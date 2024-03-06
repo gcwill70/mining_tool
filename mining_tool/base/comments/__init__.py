@@ -14,7 +14,7 @@ class IssueCommentReport(object):
       try:
           self.fetch_data()
       except Exception as e:
-          sleep(100 // retries)
+          sleep(5000 // retries)
           self.fetch_data_with_retries(retries - 1)
     
     def fetch_data(self):

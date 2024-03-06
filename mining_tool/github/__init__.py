@@ -1,5 +1,6 @@
 import os
 import re
+from time import sleep
 
 import requests
 from mining_tool.base import IssueReport
@@ -148,6 +149,7 @@ class GitHubIssueReport(IssueReport):
         return result
 
     def __post_request(self, query_template, quantity = 100, cursor =""):
+        sleep(2000) # rate limit
         request = requests.post('https://api.github.com/graphql', json={'query': query_template(quantity, cursor)}, headers=self.headers)
         if request.status_code == 401:
             raise Exception("Please enter your valid authorization token!")
