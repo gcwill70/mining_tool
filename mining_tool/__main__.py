@@ -229,7 +229,7 @@ def main(args):
     ### Get IDs from imported issue list
     if issue_report.data != None:
         try:
-            ids.extend([int(issue['issue ID']) for issue in issue_report.data])
+            ids.extend([issue['issue ID'] for issue in issue_report.data])
         except:
             pass
     ### Get IDs from imported comments
@@ -237,7 +237,7 @@ def main(args):
         for filename in glob(f'{args.comments_imp}*'):
             try:
                 substr = filename[len(args.comments_imp):]
-                ids.append(int(re.search(r'\d+', substr)[0]))
+                ids.append(re.search(r'\d+', substr)[0])
             except:
                 pass
     ### Make ID list unique
@@ -251,6 +251,7 @@ def main(args):
             query_old = []
     ## Process each issue
     for id in ids:
+        issue = next((issue for issue in issue_report.data or [] if issue['issue ID'] == id), {})
         # Create comment report
         if args.github:
             comment_report = GitHubIssueCommentReport(id, args.github)
@@ -273,7 +274,6 @@ def main(args):
         if args.comments_bl:
             bl.extend([kw.replace('\n', '') for kw in open(args.comments_bl, "r").readlines()])
         wl_matches, bl_matches = comment_report.matches('body', wl, bl)
-        issue = next((issue for issue in issue_report.data or [] if issue['issue ID'] == id), {})
         issue.update({'matches': [item for item in wl_matches]})
         if len(wl_matches) == 0 and len(bl_matches) > 0:
             issue_report.data.remove(issue)
@@ -310,12 +310,10 @@ def main(args):
             query_new: list[dict] = get_query(comment_report.data, args.comments_query)
             # Add new items to existing query
             for query_new_item in query_new:
-                # find associated issue
-                issue_match: dict = next((issue for issue in issue_report.data or [] if issue['issue ID'] == id), None)
-                if issue_match:
-                    copy = issue_match.copy()
-                    copy.update(query_new_item)
-                    query_new_item = copy
+                # add in associated issue data
+                copy = issue.copy()
+                copy.update(query_new_item)
+                query_new_item = copy
                 # find existing query
                 query_old_match: dict = next((query_old_item for query_old_item in query_old if query_old_item['body'] == query_new_item['body']), None)
                 # merge data
