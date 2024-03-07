@@ -10,7 +10,7 @@ field_size_limit(sys.maxsize)
 
 def write(data: list[dict], filename=None, headers=None):
     if len(data) < 1:
-        return
+        data.append({})
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     _, ext = os.path.splitext(filename)
     if str.startswith(ext, '.xl'):
