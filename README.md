@@ -32,17 +32,19 @@ python -m mining_tool --github Wilfred/difftastic \
 ```
 3. Filter issues based on RegEx patterns. Issues are filtered out if they have no whitelisted keywords and have a blacklisted keyword. `--github` is not needed if all data has been pulled already.
 ```
+echo "@" > data/whitelist.txt
+echo ".*" > data/blacklist.txt
 python -m mining_tool --imp data/difftastic/issues.csv \
   --comments-imp data/difftastic/issues/issue \
-  --comments-wl data/filtering/whitelisted_keywords.txt \
-  --comments-bl data/filtering/blacklisted_keywords.txt \
+  --comments-wl data/whitelist.txt \
+  --comments-bl data/blacklist.txt \
   --exp data/difftastic/filtered.csv
 ```
-4. Randomly sample filtered issues based on custom [lambda expression](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) query. The query is applied to each comment.
+1. Filter comments based on [lambda expression](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions).
 ```
 python -m mining_tool --comments-imp data/difftastic/issues/issue \
-  --comments-query "lambda x: x['login'] == 'ghost'" \
-  --comments-query-exp data/difftastic/query.xls
+  --comments-query "lambda x: x['login'] == 'Wilfred'" \
+  --comments-query-exp data/difftastic/query.csv
 ```
 
 # Environment Variables
