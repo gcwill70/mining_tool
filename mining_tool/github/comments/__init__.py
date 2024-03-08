@@ -9,7 +9,7 @@ from mining_tool.utils import conform
 DEFAULT_FIELDS = ['html_url', 'created_at', 'updated_at', 'login', 'author_association', 'body']
 
 class GitHubIssueCommentReport(IssueCommentReport):
-    def __init__(self, id: int, gh: str):
+    def __init__(self, id: str, gh: str):
       super().__init__(id)
       matches = re.findall(r'^(.+)\/(.+)$', gh)
       self.owner = matches[0][0]
@@ -22,7 +22,7 @@ class GitHubIssueCommentReport(IssueCommentReport):
 
     def __fetch_issuebody__(self, fields):
       # get issue
-      issue = self.gh.get_issue(self.id)
+      issue = self.gh.get_issue(int(self.id))
       # assign login (so it is the same format as issue comments)
       issue.raw_data['login'] = issue.raw_data['user']['login']
       # add issue title to data
@@ -32,7 +32,7 @@ class GitHubIssueCommentReport(IssueCommentReport):
 
     def __fetch_comments__(self, fields):
       # get comments list for issue
-      comments = self.gh.get_issue(self.id).get_comments()
+      comments = self.gh.get_issue(int(self.id)).get_comments()
       # create indices
       remaining = comments.totalCount; page_num = 0
       while remaining > 0:

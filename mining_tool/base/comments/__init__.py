@@ -4,7 +4,7 @@ from time import sleep
 
 
 class IssueCommentReport(object):
-    def __init__(self, id: int):
+    def __init__(self, id: str):
       self.data: list[dict] = []
       self.id = id
 
