@@ -16,35 +16,35 @@ cp .env.example .env
 ```
 
 # Quick Start
-Below is an example use case of collecting issues from [difftastic](https://github.com/Wilfred/difftastic), filtering them, and running a custom query.
+Below is an example use case of collecting issues from [twitter](https://github.com/twitter/the-algorithm), filtering them, and running a custom query.
 
 1. Mine issue metadata.
 ```
-python -m mining_tool --github Wilfred/difftastic \
-  --exp data/difftastic/issues.csv
+python -m mining_tool --github twitter/the-algorithm \
+  --exp data/twitter/issues.csv
 ```
 2. Mine comments from each issue. If `--comments-imp` is provided, comments can be collected incrementally and the tool will skip over data that have already been collected.
 ```
-python -m mining_tool --github Wilfred/difftastic \
-  --imp data/difftastic/issues.csv \
-  --comments-imp data/difftastic/issues/issue \
-  --comments-exp data/difftastic/issues/issue
+python -m mining_tool --github twitter/the-algorithm \
+  --imp data/twitter/issues.csv \
+  --comments-imp data/twitter/issues/issue \
+  --comments-exp data/twitter/issues/issue
 ```
 3. Filter issues based on RegEx patterns. Issues are filtered out if they have no whitelisted keywords and have a blacklisted keyword. `--github` is not needed if all data has been pulled already.
 ```
 echo "@" > data/whitelist.txt
 echo ".*" > data/blacklist.txt
-python -m mining_tool --imp data/difftastic/issues.csv \
-  --comments-imp data/difftastic/issues/issue \
+python -m mining_tool --imp data/twitter/issues.csv \
+  --comments-imp data/twitter/issues/issue \
   --comments-wl data/whitelist.txt \
   --comments-bl data/blacklist.txt \
-  --exp data/difftastic/filtered.csv
+  --exp data/twitter/filtered.csv
 ```
 1. Filter comments based on [lambda expression](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions).
 ```
-python -m mining_tool --comments-imp data/difftastic/issues/issue \
-  --comments-query "lambda x: x['login'] == 'Wilfred'" \
-  --comments-query-exp data/difftastic/query.csv
+python -m mining_tool --comments-imp data/twitter/issues/issue \
+  --comments-query "lambda x: 'mastodon' in x['body']" \
+  --comments-query-exp data/twitter/query.csv
 ```
 
 # Environment Variables
