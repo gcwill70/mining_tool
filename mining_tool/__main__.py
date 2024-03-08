@@ -188,8 +188,6 @@ def main(args):
     # Input validation
     if args.github and args.discourse:
         raise Exception("Up to one of --github and --discourse can be used.")
-    if args.github and re.match(r'^\w*/\w*$', args.github) == None:
-        raise Exception("--github arg must be in <owner>/<repo> format.")
     if args.sample_amount != 0 and args.sample_percent != 0:
         raise Exception("Cannot sample by both percent and amount.")
 

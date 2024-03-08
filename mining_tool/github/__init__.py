@@ -9,7 +9,7 @@ from mining_tool.base import IssueReport
 class GitHubIssueReport(IssueReport):
     def __init__(self, gh):
       super().__init__()
-      matches = re.findall(r'^(\w*)/(\w*)$', gh)
+      matches = re.findall(r'^(.+)\/(.+)$', gh)
       self.repo_owner = matches[0][0]
       self.repo_name = matches[0][1]
       self.headers = {"Authorization": f"Bearer {os.getenv('GH_PRIVATE_KEY')}"}

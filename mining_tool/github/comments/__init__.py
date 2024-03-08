@@ -11,7 +11,7 @@ DEFAULT_FIELDS = ['html_url', 'created_at', 'updated_at', 'login', 'author_assoc
 class GitHubIssueCommentReport(IssueCommentReport):
     def __init__(self, id: int, gh: str):
       super().__init__(id)
-      matches = re.findall(r'^(\w*)/(\w*)$', gh)
+      matches = re.findall(r'^(.+)\/(.+)$', gh)
       self.owner = matches[0][0]
       self.name = matches[0][1]
     
