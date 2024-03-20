@@ -116,6 +116,14 @@ optional arguments:
 
 # Other Features
 
+To random sample issues, use `--sample-amount` or `--sample-percent`.
+```
+python -m mining_tool \
+  --imp data/twitter/issues.csv \
+  --sample-amount 100 \
+  --exp data/twitter/sample.csv
+```
+
 To filter issues based on RegEx patterns, use `--comments-wl` and `--comments-bl`.
 Issues are filtered out if they have no whitelisted keywords and have a blacklisted keyword.
 ```
