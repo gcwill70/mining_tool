@@ -4,19 +4,20 @@ Python 3.9 is required.
 
 # Setup
 
+To setup your environment, run the command below and fill in your information.
+```
+cp .env.example .env
+```
+
 To setup the tool, run:
 ```
 pip install -r requirements.txt
 python -m mining_tool --setup
 ```
 
-To setup your environment, run the command below and fill in your information.
-```
-cp .env.example .env
-```
 
 # Quick Start
-Below is an example use case of collecting issues from [twitter](https://github.com/twitter/the-algorithm), filtering them, and running a custom query.
+Below is an example use case of collecting issues from [twitter/the-algorithm](https://github.com/twitter/the-algorithm), filtering them, and running a custom query.
 
 1. Mine issue metadata.
 ```
@@ -40,7 +41,7 @@ python -m mining_tool --imp data/twitter/issues.csv \
   --comments-bl data/blacklist.txt \
   --exp data/twitter/filtered.csv
 ```
-1. Filter comments based on [lambda expression](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions).
+4. Filter comments based on [lambda expression](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions).
 ```
 python -m mining_tool --comments-imp data/twitter/issues/issue \
   --comments-query "lambda x: 'mastodon' in x['body']" \
