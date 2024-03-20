@@ -75,8 +75,8 @@ def getLines(comment):
     return expand(codeReplace(comment))
 
 def classify_comment(comment):
-    model = load("repo_issues_dc/base/comments/models/comments_logisticRegression.model")
-    vectorizer = load("repo_issues_dc/base/comments/models/comments_logisticRegression.countVector")
+    model = load("mining_tool/base/comments/models/comments_logisticRegression.model")
+    vectorizer = load("mining_tool/base/comments/models/comments_logisticRegression.countVector")
     parsed = processLine(comment)
     test_vector = vectorizer.transform([parsed])
     return parsed, model.predict(test_vector)[0]

@@ -47,6 +47,11 @@ python -m mining_tool --comments-imp data/twitter/issues/issue \
   --comments-query "lambda x: 'mastodon' in x['body']" \
   --comments-query-exp data/twitter/query.csv
 ```
+5. Categorize comments using model from [GitHub-Issue-Classifier](https://github.com/ponder-lab/GitHub-Issue-Classifier).
+```
+python -m mining_tool --comments-imp data/twitter/issues/issue \
+  --comments-categorize-exp data/twitter/categorized/issue
+```
 
 # Environment Variables
 
