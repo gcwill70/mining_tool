@@ -31,26 +31,21 @@ python -m mining_tool --github twitter/the-algorithm \
   --comments-imp data/twitter/issues/issue \
   --comments-exp data/twitter/issues/issue
 ```
-3. Filter issues based on RegEx patterns. Issues are filtered out if they have no whitelisted keywords and have a blacklisted keyword. `--github` is not needed if all data has been pulled already.
-```
-echo "@" > data/whitelist.txt
-echo ".*" > data/blacklist.txt
-python -m mining_tool --imp data/twitter/issues.csv \
-  --comments-imp data/twitter/issues/issue \
-  --comments-wl data/whitelist.txt \
-  --comments-bl data/blacklist.txt \
-  --exp data/twitter/filtered.csv
-```
-4. Filter comments based on [lambda expression](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions).
+3. Separate comments into [utterances](https://www.nltk.org/api/nltk.tokenize.html).
 ```
 python -m mining_tool --comments-imp data/twitter/issues/issue \
-  --comments-query "lambda x: 'mastodon' in x['body']" \
-  --comments-query-exp data/twitter/query.csv
+  --comments-utterances-exp data/twitter/utterances/issue
 ```
-5. Categorize comments using model from [GitHub-Issue-Classifier](https://github.com/ponder-lab/GitHub-Issue-Classifier).
+4. Categorize comment utterances using model from [GitHub-Issue-Classifier](https://github.com/ponder-lab/GitHub-Issue-Classifier).
 ```
-python -m mining_tool --comments-imp data/twitter/issues/issue \
+python -m mining_tool --comments-imp data/twitter/utterances/issue \
   --comments-categorize-exp data/twitter/categorized/issue
+```
+5. Use [lambda expression](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) to find productive comments.
+```
+python -m mining_tool --comments-imp data/twitter/categorized/issue \
+  --comments-query "lambda x: x['category'] != 'Social Conversation'" \
+  --comments-query-exp data/twitter/query.csv
 ```
 
 # Environment Variables
@@ -117,6 +112,21 @@ optional arguments:
                         Query to run on each comment.
   --comments-query-exp COMMENTS_QUERY_EXP
                         File to use when exporting query results.
+```
+
+# Other Features
+
+To filter issues based on RegEx patterns, use `--comments-wl` and `--comments-bl`.
+Issues are filtered out if they have no whitelisted keywords and have a blacklisted keyword.
+```
+echo "@" > data/whitelist.txt
+echo ".*" > data/blacklist.txt
+python -m mining_tool \
+  --imp data/twitter/issues.csv \
+  --comments-imp data/twitter/issues/issue \
+  --comments-wl data/whitelist.txt \
+  --comments-bl data/blacklist.txt \
+  --exp data/twitter/filtered.csv
 ```
 
 # References
